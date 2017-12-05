@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DoublyLinkedListTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-12-05T23:07:41" hostname="Ryans-MacBook-Pro-2.local" time="0.008">
+<testsuite name="DoublyLinkedListTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-12-05T23:14:52" hostname="Ryans-MacBook-Pro-2.local" time="0.009">
   <properties/>
-  <testcase name="testPushPop" classname="DoublyLinkedListTest" time="0.005"/>
-  <testcase name="testPushShift" classname="DoublyLinkedListTest" time="0.0"/>
-  <testcase name="testUnshiftShift" classname="DoublyLinkedListTest" time="0.002"/>
+  <testcase name="testExample" classname="DoublyLinkedListTest" time="0.005"/>
+  <testcase name="testPushPop" classname="DoublyLinkedListTest" time="0.001"/>
+  <testcase name="testPushShift" classname="DoublyLinkedListTest" time="0.001"/>
+  <testcase name="testUnshiftPop" classname="DoublyLinkedListTest" time="0.0"/>
+  <testcase name="testUnshiftShift" classname="DoublyLinkedListTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

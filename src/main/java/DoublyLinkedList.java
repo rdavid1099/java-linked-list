@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class DoublyLinkedList<T> {
     private Node<T> initialNode;
     private int count;
