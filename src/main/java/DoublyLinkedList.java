@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class DoublyLinkedList<T> {
     private Node<T> initialNode;
     private int count;
@@ -12,8 +14,7 @@ public class DoublyLinkedList<T> {
             this.initialNode = newNode;
         } else {
             Node<T> lastNode = getLastNode(this.initialNode);
-            lastNode.assignNext(newNode);
-            newNode.assignPrev(lastNode);
+            makeConnection(lastNode, newNode);
         }
         this.count++;
     }
@@ -27,12 +28,37 @@ public class DoublyLinkedList<T> {
             lastNode.getPrev().assignNext(null);
         }
         lastNode.assignPrev(null);
-        count--;
+        this.count--;
         return data;
+    }
+
+    public T shift() {
+        T data = this.initialNode.getData();
+        if (this.count > 1) {
+            this.initialNode = this.initialNode.getNext();
+            this.initialNode.assignPrev(null);
+        } else {
+            this.initialNode = null;
+        }
+        this.count--;
+        return data;
+    }
+
+    public void unshift(T data) {
+        Node<T> newNode = new Node<>(data),
+                initNode = this.initialNode;
+        if (this.count > 0) makeConnection(newNode, initNode);
+        this.initialNode = newNode;
+        this.count++;
     }
 
     public int count() {
         return this.count;
+    }
+
+    private void makeConnection(Node<T> firstNode, Node<T> secondNode) {
+        firstNode.assignNext(secondNode);
+        secondNode.assignPrev(firstNode);
     }
 
     private Node<T> getLastNode(Node<T> currentNode) {

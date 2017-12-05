@@ -16,31 +16,29 @@ public class DoublyLinkedListTest {
         assertThat(list.pop(), is(20));
         assertThat(list.pop(), is(10));
     }
-    //
-    // @Ignore("Remove to run test")
-    // @Test
-    // public void testPushShift() {
-    //     DoublyLinkedList<String> list = new DoublyLinkedList<>();
-    //
-    //     list.push("10");
-    //     list.push("20");
-    //
-    //     assertThat(list.shift(), is("10"));
-    //     assertThat(list.shift(), is("20"));
-    // }
-    //
-    // @Ignore("Remove to run test")
-    // @Test
-    // public void testUnshiftShift() {
-    //     DoublyLinkedList<Character> list = new DoublyLinkedList<>();
-    //
-    //     list.unshift('1');
-    //     list.unshift('2');
-    //
-    //     assertThat(list.shift(), is('2'));
-    //     assertThat(list.shift(), is('1'));
-    // }
-    //
+
+    @Test
+    public void testPushShift() {
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        list.push("10");
+        list.push("20");
+
+        assertThat(list.shift(), is("10"));
+        assertThat(list.shift(), is("20"));
+    }
+
+    @Test
+    public void testUnshiftShift() {
+        DoublyLinkedList<Character> list = new DoublyLinkedList<>();
+
+        list.unshift('1');
+        list.unshift('2');
+
+        assertThat(list.shift(), is('2'));
+        assertThat(list.shift(), is('1'));
+    }
+
     // @Ignore("Remove to run test")
     // @Test
     // public void testUnshiftPop() {
