@@ -44,7 +44,7 @@ public class DoublyLinkedList<T> {
     }
 
     public void unshift(T data) {
-        Node<T> newNode = new Node<>(data),
+        Node<T> newNode  = new Node<>(data),
                 initNode = this.initialNode;
         if (this.count > 0) makeConnection(newNode, initNode);
         this.initialNode = newNode;
@@ -53,7 +53,16 @@ public class DoublyLinkedList<T> {
 
     public void insert(T data, int index) {
       if (index < 0) throw new RuntimeException("Index must be above zero");
-      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0);
+      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0),
+              prevNode      = (requestedNode == null) ? null : requestedNode.getPrev(),
+              newNode       = new Node<>(data);
+      if (this.count > 0) makeConnection(newNode, requestedNode);
+      if (requestedNode == null || requestedNode.getPrev() == null) {
+        this.initialNode = newNode;
+      } else {
+        makeConnection(prevNode, newNode);
+      }
+      this.count++;
     }
 
     public T getValueAtIndex(int index) {

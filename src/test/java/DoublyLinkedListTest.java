@@ -62,21 +62,24 @@ public class DoublyLinkedListTest {
         assertThat(list.pop(), is(20));
     }
 
-    // @Test
-    // public void testInsert() {
-    //   DoublyLinkedList<String> list = new DoublyLinkedList<>("Foo", "Bar");
-    //
-    //   list.insert("Hello", 1);
-    //   list.insert("World", 3);
-    //   list.insert("FooBar", 5);
-    //
-    //   assertThat(list.getValueAtIndex(0), "Foo");
-    //   assertThat(list.getValueAtIndex(1), "Hello");
-    //   assertThat(list.getValueAtIndex(2), "Bar");
-    //   assertThat(list.getValueAtIndex(3), "World");
-    //   assertThat(list.getValueAtIndex(4), null);
-    //   assertThat(list.getValueAtIndex(5), "FooBar");
-    // }
+    @Test
+    public void testInsert() {
+      DoublyLinkedList<String> list = new DoublyLinkedList<>("Foo", "Bar");
+
+      list.insert("Hello", 1);
+      list.insert("World", 3);
+      list.insert("FooBar", 5);
+      list.insert("BarFoo", 0);
+
+      assertThat(list.getValueAtIndex(0), is("BarFoo"));
+      assertThat(list.getValueAtIndex(1), is("Foo"));
+      assertThat(list.getValueAtIndex(2), is("Hello"));
+      assertThat(list.getValueAtIndex(3), is("Bar"));
+      assertThat(list.getValueAtIndex(4), is("World"));
+      assertThat(list.getValueAtIndex(5), is(null));
+      assertThat(list.getValueAtIndex(6), is("FooBar"));
+      assertThat(list.count(), is(7))
+    }
 
     @Test
     public void testExample() {
