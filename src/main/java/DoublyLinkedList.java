@@ -60,6 +60,12 @@ public class DoublyLinkedList<T> {
         }
     }
 
+    public void replace(int index, T data) {
+      if (index >= this.count || this.initialNode == null) throw new RuntimeException("Index out of range of array");
+      Node<T> selectedNode = getNodeAt(this.initialNode, index, 0);
+      selectedNode.assignData(data);
+    }
+
     public T getValueAtIndex(int index) {
         final String errMsg = "Index outside of range of LinkedList";
         if (index >= this.count) throw new RuntimeException(errMsg);
@@ -135,6 +141,10 @@ class Node<T> {
 
     public Node(T data) {
         this.data = data;
+    }
+
+    public void assignData(T data) {
+      this.data = data;
     }
 
     public void assignNext(Node<T> nextNode) {

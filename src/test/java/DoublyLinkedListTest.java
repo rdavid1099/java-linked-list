@@ -93,6 +93,18 @@ public class DoublyLinkedListTest {
     }
 
     @Test
+    public void testReplace() {
+      DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+      list.push("Goodbye");
+      list.push("World");
+      list.replace(0, "Hello");
+
+      assertThat(list.getValueAtIndex(0), is("Hello"));
+      assertThat(list.getValueAtIndex(1), is("World"));
+    }
+
+    @Test
     public void testExample() {
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
 
