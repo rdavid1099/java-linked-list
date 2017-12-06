@@ -51,15 +51,16 @@ public class DoublyLinkedList<T> {
         this.count++;
     }
 
+    public void insert(T data, int index) {
+      if (index < 0) throw new RuntimeException("Index must be above zero");
+      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0);
+    }
+
     public T getValueAtIndex(int index) {
       final String errMsg = "Index outside of range of LinkedList";
       if (index >= this.count) throw new RuntimeException(errMsg);
-      Node<T> currentNode = this.initialNode;
-      for(int i = 0; i < this.count; i++) {
-        if (i == index) return currentNode.getData();
-        currentNode = currentNode.getNext();
-      }
-      return null;
+      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0);
+      return requestedNode.getData();
     }
 
     public int count() {
@@ -69,6 +70,17 @@ public class DoublyLinkedList<T> {
     private void makeConnection(Node<T> firstNode, Node<T> secondNode) {
         firstNode.assignNext(secondNode);
         secondNode.assignPrev(firstNode);
+    }
+
+    private Node<T> getNodeAt(Node<T> currentNode, int index, int counter) {
+      if (currentNode.hasNext() && index != counter) {
+        counter++;
+        return getNodeAt(currentNode.getNext(), index, counter);
+      } else if (index == counter) {
+        return currentNode;
+      } else {
+        return null;
+      }
     }
 
     private Node<T> getLastNode(Node<T> currentNode) {
