@@ -67,6 +67,19 @@ public class DoublyLinkedList<T> {
         return requestedNode.getData();
     }
 
+    public Integer find(T data) {
+      if (this.count == 0) return null;
+      Node<T> currentNode = this.initialNode;
+      for (int i = 0; i < this.count; i++) {
+        if (currentNode.getData() == data) {
+          return i;
+        } else {
+          currentNode = currentNode.getNext();
+        }
+      }
+      return null;
+    }
+
     public int count() {
         return this.count;
     }
