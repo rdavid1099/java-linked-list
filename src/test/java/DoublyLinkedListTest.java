@@ -13,8 +13,18 @@ public class DoublyLinkedListTest {
         list.push(10);
         list.push(20);
 
+        assertThat(list.count(), is(2));
         assertThat(list.pop(), is(20));
         assertThat(list.pop(), is(10));
+    }
+
+    @Test
+    public void testInitializeWithValues() {
+      DoublyLinkedList<Character> list = new DoublyLinkedList<>('a', 'b', 'c');
+
+      assertThat(list.getValueAtIndex(0), is('a'));
+      assertThat(list.getValueAtIndex(1), is('b'));
+      assertThat(list.getValueAtIndex(2), is('c'));
     }
 
     @Test
@@ -26,6 +36,7 @@ public class DoublyLinkedListTest {
 
         assertThat(list.shift(), is("10"));
         assertThat(list.shift(), is("20"));
+        assertThat(list.count(), is(0));
     }
 
     @Test
@@ -36,6 +47,7 @@ public class DoublyLinkedListTest {
         list.unshift('2');
 
         assertThat(list.shift(), is('2'));
+        assertThat(list.count(), is(1));
         assertThat(list.shift(), is('1'));
     }
 

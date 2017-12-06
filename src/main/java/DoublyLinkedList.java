@@ -2,8 +2,9 @@ public class DoublyLinkedList<T> {
     private Node<T> initialNode;
     private int count;
 
-    public DoublyLinkedList() {
+    public DoublyLinkedList(T... initData) {
         this.count = 0;
+        for(T data : initData) { push(data); }
     }
 
     public void push(T data) {
@@ -48,6 +49,17 @@ public class DoublyLinkedList<T> {
         if (this.count > 0) makeConnection(newNode, initNode);
         this.initialNode = newNode;
         this.count++;
+    }
+
+    public T getValueAtIndex(int index) {
+      final String errMsg = "Index outside of range of LinkedList";
+      if (index >= this.count) throw new RuntimeException(errMsg);
+      Node<T> currentNode = this.initialNode;
+      for(int i = 0; i < this.count; i++) {
+        if (i == index) return currentNode.getData();
+        currentNode = currentNode.getNext();
+      }
+      return null;
     }
 
     public int count() {
