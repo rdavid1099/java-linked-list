@@ -52,28 +52,43 @@ public class DoublyLinkedList<T> {
     }
 
     public void insert(T data, int index) {
-      if (index < 0) throw new RuntimeException("Index must be above zero");
-      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0),
-              prevNode      = (requestedNode == null) ? null : requestedNode.getPrev(),
-              newNode       = new Node<>(data);
-      if (this.count > 0) makeConnection(newNode, requestedNode);
-      if (requestedNode == null || requestedNode.getPrev() == null) {
-        this.initialNode = newNode;
-      } else {
-        makeConnection(prevNode, newNode);
-      }
-      this.count++;
+        if (index < 0) throw new RuntimeException("Index must be above zero");
+        if (index >= this.count && this.count != 0) {
+            extendedPush(data, index);
+        } else {
+            insertWithinScope(data, index);
+        }
     }
 
     public T getValueAtIndex(int index) {
-      final String errMsg = "Index outside of range of LinkedList";
-      if (index >= this.count) throw new RuntimeException(errMsg);
-      Node<T> requestedNode = getNodeAt(this.initialNode, index, 0);
-      return requestedNode.getData();
+        final String errMsg = "Index outside of range of LinkedList";
+        if (index >= this.count) throw new RuntimeException(errMsg);
+        Node<T> requestedNode = getNodeAt(this.initialNode, index, 0);
+        return requestedNode.getData();
     }
 
     public int count() {
         return this.count;
+    }
+
+    private void extendedPush(T data, int index) {
+        Node<T> lastNode = getLastNode(this.initialNode);
+        for (int i = this.count; i < index; i++) {
+            push(null);
+        }
+        push(data);
+    }
+
+    private void insertWithinScope(T data, int index) {
+        Node<T> requestedNode = getNodeAt(this.initialNode, index, 0),
+                prevNode      = (requestedNode == null) ? null : requestedNode.getPrev(),
+                newNode       = new Node<>(data);
+        if (this.count > 0) makeConnection(newNode, requestedNode);
+        if (prevNode != null) makeConnection(prevNode, newNode);
+        if (requestedNode == null || newNode.getPrev() == null) {
+            this.initialNode = newNode;
+        }
+        this.count++;
     }
 
     private void makeConnection(Node<T> firstNode, Node<T> secondNode) {
@@ -82,14 +97,14 @@ public class DoublyLinkedList<T> {
     }
 
     private Node<T> getNodeAt(Node<T> currentNode, int index, int counter) {
-      if (currentNode.hasNext() && index != counter) {
-        counter++;
-        return getNodeAt(currentNode.getNext(), index, counter);
-      } else if (index == counter) {
-        return currentNode;
-      } else {
-        return null;
-      }
+        if (currentNode.hasNext() && index != counter) {
+            counter++;
+            return getNodeAt(currentNode.getNext(), index, counter);
+        } else if (index == counter) {
+            return currentNode;
+        } else {
+            return null;
+        }
     }
 
     private Node<T> getLastNode(Node<T> currentNode) {

@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNull;
 
 public class DoublyLinkedListTest {
 
@@ -76,9 +77,9 @@ public class DoublyLinkedListTest {
       assertThat(list.getValueAtIndex(2), is("Hello"));
       assertThat(list.getValueAtIndex(3), is("Bar"));
       assertThat(list.getValueAtIndex(4), is("World"));
-      assertThat(list.getValueAtIndex(5), is(null));
+      assertNull(list.getValueAtIndex(5));
       assertThat(list.getValueAtIndex(6), is("FooBar"));
-      assertThat(list.count(), is(7))
+      assertThat(list.count(), is(7));
     }
 
     @Test
